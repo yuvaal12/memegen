@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memegen</title>
+    <link rel="stylesheet" href="css/helpers.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="onInit()">
+
+    <section class="screen" onclick="toggleMenu()"></section>
+
+    <header>
+        <nav class="nav-container flex space-between align-center page-container">
+            <img class="main-logo" src="icons/logo.png" />
+            <ul class="pages flex">
+                <li class="gallery-page" onclick="onOpenGalleryPage()">Gallery</li>
+                <li class="about-page" onclick="onOpenAboutPage()">About</li>
+            </ul>
+            <button onclick="toggleMenu()" class="btn-menu">☰</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="search-container flex space-around align-center column page-container">
+            <div class="type-search">
+                <input type="text" class="txt-center" placeholder="Search..." onkeyup="onSearchImg(value)">
+            </div>
+
+            <div class="keywords-search"></div>
+        </div>
+
+        <div class="main-container page-container">
+            <div class="gallery-container grid justify-center align-content"></div>
+        </div>
+
+        <div class="canvas-container justify-even align-center page-container hide-el">
+            <canvas id="edit-canvas" height="450" width="450"></canvas>
+
+            <div class="block">
+                <div class="flex column edit-main">
+                    <input type="text" class="selected-line-txt txt-center" value="" oninput="onChangeTxtVal(value)">
+                </div>
+                <div class="flex space-around edit-main ">
+                    <button class="control-btn " onclick="onAddLine()"><img src="icons/add.png" /></button>
+                    <button class="control-btn" onclick="onSwitchLines()"><img src="icons/switch.png" /></button>
+                    <button class="control-btn" onclick="onChangeFontSize(3)"><img src="icons/increase-font.png" /></button>
+                    <button class="control-btn" onclick="onChangeFontSize(-3)"><img src="icons/decrease-font.png" /></button>
+                </div>
+                <div class="flex space-around edit-main ">
+                    <button class="control-btn" onclick="onDeleteLine()"><img src="icons/trash.png" /></button>
+                    <button class="control-btn" onclick="onChangeAlign('right')"><img src="icons/align-to-left.png" /></button>
+                    <button class="control-btn" onclick="onChangeAlign('center')"><img src="icons/align-center.png" /></button>
+                    <button class="control-btn" onclick="onChangeAlign('left')"><img src="icons/align-to-right.png" /></button>
+                </div>
+                <div class="flex space-around edit-main">
+                    <select class="control-select" onchange="onChangeFont(value)">
+                <option>Lato</option>
+                <option>Arial</option>
+                <option>Impact</option>
+                <option>cursive</option>
+                <option>Tahoma</option>
+                <option>Courier</option>
+                </select>
+                    <input id="fill" type="color" value="#000000" class="control-color-input fill-color" onchange="onChangeFillColor(value)" />
+                    <input id="stroke" type="color" value="#ffffff" class="control-color-input stroke-color" onchange="onChangeStrokeColor(value)" />
+                </div>
+
+                <div class="flex space-around edit-main">
+                    <button class="control-btn download-btn"><a href="#" onclick="onDownloadCanvas(this)" download="">Download</a></button>
+                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden" />
+                        <button class="control-btn share-btn" type="submit" onsubmit="uploadImg(this, event)">Share</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-container flex align-center page-container hide-el">
+            <img class="about-img" src="img/me.jpeg">
+            <div class="about-info">
+                <h1>Yuval Ben Shaul</h1>
+                <p>Welcome to my project - sprint 2 (Coding Academy)</p>
+                <div class="about-contact">
+                    <button><img src="icons/linkedin-logo.png" /></button>
+                    <button><img src="icons/facebook-logo.png" /></button>
+                    <button><img src="icons/github-logo.png" /></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-container flex column align-center justify-center page-container">
+        <img class="main-logo" src="icons/logo.png" />
+        <p>2020 Canvas Project</p>
+    </footer>
+
+    <script src="js/util.js"></script>
+    <script src="js/main-service.js"></script>
+    <script src="js/gallery-controller.js"></script>
+    <script src="js/meme-controller.js"></script>
+</body>
+
+</html>
